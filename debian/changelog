@@ -1,11 +1,5 @@
-lingmo-ocr (2.0.1+lingmo3build1) helium; urgency=medium
+﻿lingmo-ocr (1.0.0) trixie; urgency=medium
 
-  * Specification version number.
+  * Initial release of lingmo-ocr.
 
- -- Lingmo OS Team <team@lingmo.org>  Sun, 27 Jul 2025 18:50:31 +0800
-
-lingmo-ocr (2.0.0) unstable; urgency=medium
-
-  * Fix build on arm
-
- -- Lingmo OS Team <team@lingmo.org>  Wed, 18 Dec 2024 08:29:51 +0800
+ -- Lingmo OS Team <team@lingmo.org>  Fri, 10 Jul 2026 +0000

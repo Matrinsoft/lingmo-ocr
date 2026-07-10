@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+﻿cmake_minimum_required(VERSION 3.20)
 project(lingmo-ocr VERSION 1.0.0 DESCRIPTION "Lingmo OCR Service" LANGUAGES CXX)
 
 include_directories(../3rdparty/ncnn/src)
@@ -99,7 +99,7 @@ if(DOTEST)
 
     add_test(${PROJECT_NAME_TEST} COMMAND ${PROJECT_NAME_TEST})
 
-#------------------------------ 创建'make test'指令---------------------------------------
+#------------------------------ 鍒涘缓'make test'鎸囦护---------------------------------------
     add_custom_target(test
         COMMAND mkdir -p coverageResult
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
@@ -141,10 +141,10 @@ if(DOTEST)
     qt5_use_modules(${PROJECT_NAME_TEST} ${QtModule})
 endif()
 
-target_link_libraries(${PROJECT_NAME} opencv_world ncnn Qt5::Core Qt5::Gui Qt5::Widgets pthread dl -fopenmp)
+target_link_libraries(${PROJECT_NAME} opencv_world ncnn Qt6::Core Qt6::Gui Qt6::Widgets pthread dl -fopenmp)
 
 if(DOTEST)
-    target_link_libraries(${PROJECT_NAME_TEST} opencv_world ncnn Qt5::Core Qt5::Gui Qt5::Widgets ${dtk_lib_LIBRARIES} pthread dl -fopenmp)
+    target_link_libraries(${PROJECT_NAME_TEST} opencv_world ncnn Qt6::Core Qt6::Gui Qt6::Widgets ${dtk_lib_LIBRARIES} pthread dl -fopenmp)
 endif()
 
 # install

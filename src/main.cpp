@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (C) 2020 ~ 2021 Deepin Technology Co., Ltd.
 *
 * Author: He MingYang Hao<hemingyang@uniontech.com>
@@ -32,7 +32,8 @@
 #include <QCoreApplication>
 #include <QDBusConnection>
 #include <QDBusInterface>
-#include <QDesktopWidget>
+#include <QScreen>
+#include <QGuiApplication>
 
 //鍒ゆ柇鏄惁鏄痺ayland
 bool CheckWayland()
