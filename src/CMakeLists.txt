@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.20)
 project(lingmo-ocr VERSION 1.0.0 DESCRIPTION "Lingmo OCR Service" LANGUAGES CXX)
 
 include_directories(../3rdparty/ncnn/src)
@@ -21,13 +21,7 @@ if(DOTEST)
     endif()
 endif()
 
-find_package(Qt5 REQUIRED ${QtModule})
-
-include_directories(
-    ${Qt5Core_INCLUDE_DIRS}
-    ${Qt5DBus_INCLUDE_DIRS}
-)
-add_definitions(${QT_DEFINITIONS})
+find_package(Qt6 REQUIRED ${QtModule})
 
 include(CMakePackageConfigHelpers)
 
@@ -65,10 +59,9 @@ aux_source_directory(./paddleocr-ncnn allSource)
 file(GLOB TargetTsFiles LIST_DIRECTORIES false ../translations/${PROJECT_NAME}*.ts)
 set_directory_properties(PROPERTIES CLEAN_NO_CUSTOM 1)
 if (NOT (${CMAKE_BUILD_TYPE} MATCHES "Debug"))
-    qt5_create_translation(LangSrcs ${allSource} ${TargetTsFiles}
+    qt_create_translation(LangSrcs ${allSource} ${TargetTsFiles}
         OPTIONS )
 endif()
-#qt5_add_translation(${TargetTsFiles})
 set_source_files_properties(${qmfiles} PROPERTIES OUTPUT_LOCATION "translations")
 
 #QRC file
@@ -99,7 +92,6 @@ if(DOTEST)
 
     add_test(${PROJECT_NAME_TEST} COMMAND ${PROJECT_NAME_TEST})
 
-#------------------------------ 鍒涘缓'make test'鎸囦护---------------------------------------
     add_custom_target(test
         COMMAND mkdir -p coverageResult
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
@@ -128,17 +120,9 @@ endif()
 
 #for dtk
 find_package(PkgConfig REQUIRED)
-#pkg_check_modules(dtk_lib REQUIRED dtkwidget dtkcore )
-#target_include_directories(${PROJECT_NAME} PUBLIC ${dtk_lib_INCLUDE_DIRS})
 
 if(DOTEST)
     target_include_directories(${PROJECT_NAME_TEST} PUBLIC ${dtk_lib_INCLUDE_DIRS})
-endif()
-
-qt5_use_modules(${PROJECT_NAME} ${QtModule})
-
-if(DOTEST)
-    qt5_use_modules(${PROJECT_NAME_TEST} ${QtModule})
 endif()
 
 target_link_libraries(${PROJECT_NAME} opencv_world ncnn Qt6::Core Qt6::Gui Qt6::Widgets pthread dl -fopenmp)
